@@ -126,7 +126,7 @@ $("#registerButton").on("click", () => {
   }
 });
 
-// Closes Bootstrap pop-ups dynamically:
+// Closes Bootstrap pop-ups:
 function closeModal(e) {
   let modal = bootstrap.Modal.getInstance(e.target.closest(".modal"));
   modal.hide();
