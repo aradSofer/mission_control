@@ -5,8 +5,8 @@ class User {
     this.email = email;
     this.password = password;
     this.profilePic = profilePic;
-  };
-};
+  }
+}
 
 const usernameInput = $("#username");
 const emailInput = $("#email");
@@ -79,17 +79,21 @@ $("#registerButton").on("click", () => {
       for (let x in allUsers) {
         let user = allUsers[x];
         if (user.email === providedEmail) {
-            // Initiate And Populate Dynamic Bootstrap Popup (while return):
-            const userExistsModal = new bootstrap.Modal($("#dynamic-popup"));
-            $('#dynamic-popup .modal-title').text('User Already Exists!');
-            $('#dynamic-popup .modal-body p').html('The provided <b>Email Address</b> is already in use');
-            $('#dynamic-popup .modal-footer .btn-primary').text('Login');
-            $('#dynamic-popup .modal-footer .btn-primary').attr('onclick', 'navigateToLoginPage()');
-            userExistsModal.show();
-            return;
+          // Initiate And Populate Dynamic Bootstrap Popup (while return):
+          const userExistsModal = new bootstrap.Modal($("#dynamic-popup"));
+          $("#dynamic-popup .modal-title").text("User Already Exists!");
+          $("#dynamic-popup .modal-body p").html(
+            "The provided <b>Email Address</b> is already in use"
+          );
+          $("#dynamic-popup .modal-footer .btn-primary").text("Login");
+          $("#dynamic-popup .modal-footer .btn-primary").attr(
+            "onclick",
+            "navigateToLoginPage()"
+          );
+          userExistsModal.show();
+          return;
         }
-            // 
-
+        //
       }
       id = allUsers[allUsers.length - 1].userId + 1;
     }
@@ -101,12 +105,12 @@ $("#registerButton").on("click", () => {
       providedPassword,
       staticProfilePic
     );
-    // 
+    //
 
     // Set Local Storage:
     allUsers.push(newUser);
     localStorage.setItem("missionControl_users", JSON.stringify(allUsers));
-    // 
+    //
 
     alert("user created successfully!");
 
@@ -115,8 +119,8 @@ $("#registerButton").on("click", () => {
     usernameInput.val("");
     passwordInput.val("");
     repeatPasswordInput.val("");
-    $("#termsOfUse").prop('checked', false);
-    // 
+    $("#termsOfUse").prop("checked", false);
+    //
 
     navigateToLoginPage();
   }
@@ -126,9 +130,9 @@ $("#registerButton").on("click", () => {
 function closeModal(e) {
   let modal = bootstrap.Modal.getInstance(e.target.closest(".modal"));
   modal.hide();
-};
+}
 //
 
 function navigateToLoginPage() {
   window.location.href = "./login_page.html";
-};
+}
