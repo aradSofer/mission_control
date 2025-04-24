@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>התחברות</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+  <div class="login-container">
+    <h2>התחברות</h2>
+    <div class="error" id="error"></div>
+    <input type="text" id="username" placeholder="שם משתמש">
+    <input type="password" id="password" placeholder="סיסמה">
+    <button onclick="login()">התחבר</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
