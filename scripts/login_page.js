@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         alert("התחברת בהצלחה!");
         // ניתוב לעמוד הראשי
-        window.location.href = "../main_deshboard.js";
+        window.location.href = "../pages/main_dashboard.html";
       }
     });
   });
