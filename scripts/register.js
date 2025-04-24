@@ -47,7 +47,7 @@ $("#registerButton").on("click", () => {
     passwordInput.val() === "" ||
     repeatPasswordInput.val() === ""
   ) {
-    errorPopupCallback(
+    populateAndDisplayErrorToast(
       "Missing Fields",
       "Please Fill In All The Required Fields"
     );
@@ -56,7 +56,7 @@ $("#registerButton").on("click", () => {
 
     // Check for Unchecked Terms Of Use Checkbox:
   } else if (!$("#termsOfUse").is(":checked")) {
-    errorPopupCallback(
+    populateAndDisplayErrorToast(
       "Missing Fields",
       "Please Accept The Terms Of Use"
     );
@@ -67,7 +67,7 @@ $("#registerButton").on("click", () => {
   // Verify that both passwords match:
   else {
     if (passwordInput.val() != repeatPasswordInput.val()) {
-      errorPopupCallback(
+      populateAndDisplayErrorToast(
         "Oops...",
         "The passwords don’t match <br> Please double-check"
       );
@@ -159,7 +159,7 @@ function navigateToLoginPage() {
   window.location.href = "./login_page.html";
 }
 
-function errorPopupCallback(title, body) {
+function populateAndDisplayErrorToast(title, body) {
   const errorModal = new bootstrap.Modal($("#dynamic-popup"));
   $("#dynamic-popup .modal-title").text(title);
   $("#dynamic-popup .modal-body p")
