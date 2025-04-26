@@ -1,3 +1,44 @@
+
+const scheduleTable = $("#main-table");
+
+// Build the table structure:
+for (let i = 0; i < 11; i++) {
+    scheduleTable.html(scheduleTable.html() +`<tr row-index="${i}"></tr>`)
+    for (let j = 0; j < 6; j++) {
+        scheduleTable.find(`tr[row-index="${i}"]`).html(scheduleTable.find(`tr[row-index="${i}"]`).html() + `
+        <td col-index="${j}" class="align-middle"></td>
+        `)
+    }
+    let hour = 8 + i;
+    let hourStr = hour.toString().padStart(2, '0') + ":00";
+    $(`tr[row-index="${i}"] td[col-index="0"]`).text(hourStr);
+}
+// 
+
+// Function to display my popup - DONT USE
+// $('#createTask').on("click", () => {
+//     const createTaskModal = new bootstrap.Modal($('#dynamic-popup'))
+//     const taskTime = document.getElementById("task-time");
+
+// for (let hour = 8; hour <= 18; hour++) {
+//     const option = document.createElement("option");
+//     option.value = option.text = `${hour.toString().padStart(2, '0')}:00`;
+//     taskTime.appendChild(option);
+// }
+//     createTaskModal.show()
+// })
+
+
+
+
+
+
+
+
+
+
+
+
 class Task{
     constructor(taskId, title, description, status, priority, dateCreated, dateDue, assignee, createdBy, comments){
         this.taskId = taskId;
