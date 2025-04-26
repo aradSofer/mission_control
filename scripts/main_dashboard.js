@@ -30,15 +30,6 @@ for (let i = 0; i < 11; i++) {
 
 
 
-
-
-
-
-
-
-
-
-
 class Task{
     constructor(taskId, title, description, status, priority, dateCreated, dateDue, assignee, createdBy, comments){
         this.taskId = taskId;
