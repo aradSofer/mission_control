@@ -8,6 +8,8 @@ class User {
   }
 }
 
+const sleepMode = (time) => new Promise((res) => setTimeout(res, time * 1000));
+
 const usernameInput = $("#username");
 const emailInput = $("#email");
 const passwordInput = $("#password");
@@ -45,13 +47,19 @@ $("#registerButton").on("click", () => {
     passwordInput.val() === "" ||
     repeatPasswordInput.val() === ""
   ) {
-    alert("Missing info!");
+    populateAndDisplayErrorToast(
+      "Missing Fields",
+      "Please Fill In All The Required Fields"
+    );
     return;
     //
 
     // Check for Unchecked Terms Of Use Checkbox:
   } else if (!$("#termsOfUse").is(":checked")) {
-    alert("Checkbox is NOT checked");
+    populateAndDisplayErrorToast(
+      "Missing Fields",
+      "Please Accept The Terms Of Use"
+    );
     return;
   }
   //
@@ -59,7 +67,10 @@ $("#registerButton").on("click", () => {
   // Verify that both passwords match:
   else {
     if (passwordInput.val() != repeatPasswordInput.val()) {
-      alert("Oops! The passwords don’t match. Please double-check");
+      populateAndDisplayErrorToast(
+        "Oops...",
+        "The passwords don’t match <br> Please double-check"
+      );
       return;
     }
     //
@@ -112,8 +123,21 @@ $("#registerButton").on("click", () => {
     localStorage.setItem("missionControl_users", JSON.stringify(allUsers));
     //
 
-    alert("user created successfully!");
-
+    const welcomeModal = new bootstrap.Modal($("#dynamic-popup"));
+    $("#dynamic-popup .modal-title").text("Welcome to Mission Control!");
+    $("#dynamic-popup .modal-body p")
+      .html(
+        `Hi ${providedUsername},<br> Welcome on board! <br> Please log in to complete your registration`
+      )
+      .css({ "text-align": "center", width: "fit-content", margin: "auto" });
+    $("#dynamic-popup .modal-footer .btn-primary").css("display", "none");
+    $("#dynamic-popup .modal-footer .btn-secondary").css("display", "none");
+    welcomeModal.show();
+    sleepMode(2.5).then(() => {
+      let modal = bootstrap.Modal.getInstance($("#dynamic-popup"));
+      modal.hide();
+      navigateToLoginPage();
+    });
     // Clear Form:
     emailInput.val("");
     usernameInput.val("");
@@ -121,8 +145,6 @@ $("#registerButton").on("click", () => {
     repeatPasswordInput.val("");
     $("#termsOfUse").prop("checked", false);
     //
-
-    navigateToLoginPage();
   }
 });
 
@@ -135,4 +157,20 @@ function closeModal(e) {
 
 function navigateToLoginPage() {
   window.location.href = "./login_page.html";
+}
+
+function populateAndDisplayErrorToast(title, body) {
+  const errorModal = new bootstrap.Modal($("#dynamic-popup"));
+  $("#dynamic-popup .modal-title").text(title);
+  $("#dynamic-popup .modal-body p")
+    .html(body)
+    .css({ "text-align": "center", width: "fit-content", margin: "auto" });
+  $("#dynamic-popup .modal-footer .btn-primary").css("display", "none");
+  $("#dynamic-popup .modal-footer .btn-secondary").css("display", "none");
+  errorModal.show();
+  sleepMode(1.2).then(() => {
+    let modal = bootstrap.Modal.getInstance($("#dynamic-popup"));
+    modal.hide();
+    return;
+  });
 }
