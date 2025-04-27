@@ -95,3 +95,34 @@ function populateAndDisplayErrorToast(title, body) {
     });
   }
 
+  const task= [];
+  document.getElementById("myModal").addEventListener('submit', function(e)  {
+e.preventDefault();
+const title= document.getElementById("title").value
+const description= document.getElementById("description").value
+const status= document.getElementById("status").value
+const priority= document.getElementById("priority").value
+const assignee= document.getElementById("assignee").value
+const createdBy= document.getElementById("createdBy").value
+const date= document.getElementById("date").value
+const time= document.getElementById("time").value
+const dateCreated= document.getElementById("dateCreated").value
+const comments= document.getElementById("comments").value
+
+const newTask = {
+    title: title,
+    description: description,
+    status: status,
+    priority: priority,
+    assignee: assignee,
+    createdBy: createdBy,
+    date: date,
+    time: time,
+    dateCreated: dateCreated,
+    comments: comments
+}
+task.push(newTask);
+localStorage.setItem('task')
+  })
+
+  console.log(task);
