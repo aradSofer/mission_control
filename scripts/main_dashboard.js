@@ -238,10 +238,7 @@ $("#saveTaskBtn").on("click", () => {
   let id;
 
   if (!taskName || !taskDescription || !taskPriority || !taskDate) {
-    populateAndDisplayErrorToast(
-      "Missing Information",
-      "Please fill in all fields"
-    );
+    alert("Please fill in all required fields.");
     return;
   }
 
@@ -326,21 +323,5 @@ $("#saveTaskBtn").on("click", () => {
   return;
 });
 
-async function sleepMode(seconds) {
-  new Promise((resolve) => setTimeout(resolve, seconds * 1000));
-}
-function populateAndDisplayErrorToast(title, body) {
-  const errorModal = new bootstrap.Modal($("#dynamic-popup"));
-  $("#dynamic-popup .modal-title").text(title);
-  $("#dynamic-popup .modal-body p")
-    .html(body)
-    .css({ "text-align": "center", width: "fit-content", margin: "auto" });
-  $("#dynamic-popup .modal-footer .btn-primary").css("display", "none");
-  $("#dynamic-popup .modal-footer .btn-secondary").css("display", "none");
-  errorModal.show();
-  sleepMode(1.2).then(() => {
-    let modal = bootstrap.Modal.getInstance($("#dynamic-popup"));
-    modal.hide();
-    return;
-  });
-}
+
+
